@@ -1,0 +1,256 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;800&display=swap');
+
+:root {
+  /* color */
+  --color-primary: hsl(209, 23%, 22%);
+  --color-primary-alt: hsl(200, 15%, 8%);
+  --color-secondary: hsl(0, 0%, 52%);
+  --color-background: hsl(209, 26%, 17%);
+  --color-text: hsl(0, 0%, 98%);
+  --color-light: hsl(0, 0%, 100%);
+  --color-anchor: #3a00ff;
+  /* font family */
+  --font-family-primary: 'Nunito Sans', sans-serif;
+  /* font weight */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-semiBold: 600;
+  --font-weight-extraBold: 800;
+  /* font size */
+  --font-size-100: .625rem;
+  --font-size-200: .75rem;
+  --font-size-300: .875rem;
+  --font-size-400: 1rem;
+  --font-size-500: 1.125rem;
+  --font-size-600: 1.375rem;
+  --font-size-700: 2rem;
+  --font-size-800: 2.5rem;
+  --font-size-900: 3.5rem;
+}
+
+/* https://piccalil.li/blog/a-modern-css-reset */
+/* Modified */
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  text-rendering: optimizeSpeed;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+body {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-400);
+  font-weight: var(--font-weight-light);
+  line-height: 1.5;
+  color: var(--color-light);
+  background-color: var(--color-background);
+}
+
+.container {
+  --max-width: 1110px;
+  --padding: 1rem;
+
+  width: min(var(--max-width), 100% - (var(--padding) * 2));
+  margin-inline: auto;
+}
+
+@media (min-width:768px) {
+  .container {
+    --padding: 2rem;
+  }
+}
+
+h1,
+h2,
+h3 {
+  font-weight: var(--font-weight-semiBold);
+  line-height: 1;
+  margin-bottom: 0.65em;
+}
+
+h1 {
+  font-size: var(--font-size-800);
+  font-size: clamp(2rem, 7vw, var(--font-size-800));
+}
+
+h2 {
+  font-size: var(--font-size-700);
+  font-size: clamp(2rem, 4vw, var(--font-size-700));
+}
+
+h3 {
+  font-size: var(--font-size-600);
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+strong {
+  font-weight: var(--font-weight-semiBold)
+}
+
+a {
+  color: var(--color-anchor);
+}
+
+header,
+#countries li,
+input,
+select,
+button {
+  background-color: var(--color-primary);
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 0px 18px -2px var(--color-primary-alt);
+  box-shadow: 0px 0px 11px -2px var(--color-primary-alt);
+}
+
+input,
+select,
+button {
+  border: none;
+  outline: none;
+  padding: .8rem 1rem;
+  font-size: var(--font-size-300);
+  color: var(--color-text);
+}
+
+input::placeholder {
+  color: var(--color-secondary);
+}
+
+/* Header */
+header {
+  height: 45px;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width:768px) {
+  header {
+    height: 80px;
+  }
+}
+
+.logo a {
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: var(--font-weight-semiBold);
+  font-size: var(--font-size-600);
+}
+
+/* Search */
+.search {
+  padding-block: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+}
+
+/* Countries */
+#countries ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  justify-content: center;
+}
+
+#countries li {
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 265px;
+  grid-template-rows: 190px 175px;
+  overflow: hidden;
+}
+
+#countries .content {
+  padding: 1rem;
+}
+
+#countries img {
+  height: 190px;
+  object-fit: cover;
+  margin-inline: auto;
+}
+
+/* Country modal */
+#country dialog {
+  position: absolute;
+  top: 3.5rem;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: min(800px, 100% - 2rem);
+  background-color: var(--color-background);
+  color: var(--color-light);
+  height: 400px;
+  -webkit-box-shadow: 0px 0px 18px -2px var(--color-primary-alt);
+  box-shadow: 0px 0px 11px -2px var(--color-primary-alt);
+  border: 0;
+}
+
+@media (min-width:768px) {
+  #country dialog {
+    top: 6rem;
+    width: min(800px, 100% - 4rem);
+  }
+}

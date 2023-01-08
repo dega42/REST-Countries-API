@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REST Countries API</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./main.js" defer></script>
+    <link rel="icon" href="./favicon.ico">
+    <script src="https://kit.fontawesome.com/dcbcb2079d.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo"><a href="/">REST Countries API</a></div>            
+        </div>
+    </header>
+    <nav>
+        <div class="container">
+            <form id="search" class="search">
+                <div class="form-group">
+                    <label for="searchTerm">Search </label>
+                    <input type="text" name="searchTerm" id="searchTerm" placeholder="something">
+                </div>
+                <div class="form-group">
+                    <label for="searchIn"> Search in </label>
+                    <select name="searchIn" id="searchIn">
+                        <option value="name">country name</option>
+                        <option value="currency">currency</option>
+                        <option value="lang">language</option>
+                        <option value="alpha">code</option>
+                        <option value="capital">capital</option>
+                    </select>
+                </div>
+                <button type="submit">Search</button>
+                <button type="reset" id="formReset">Reset</button>
+                <div class="form-group">
+                    <label for="filterRegion">Filter region </label>
+                    <select name="filterRegion" id="filterRegion">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="sortBy">Sort by </label>
+                    <select name="sortBy" id="sortBy">
+                        <option value="sortByNameAZ">Name A-Z</option>
+                        <option value="sortByNameZA">Name Z-A</option>
+                        <option value="sortByPopulationAsc">Population Ascendant</option>
+                        <option value="sortByPopulationDesc">Population Decreasing</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+    </nav>
+    <main>
+        <div class="container">
+            <div id="country"></div>
+            <div id="hits"></div>
+            <div id="countries"></div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+
+        </div>
+    </footer>
+</body>
+
+</html>
