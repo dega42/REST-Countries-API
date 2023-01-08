@@ -117,7 +117,7 @@ function renderCountries(countries) {
     var countriesHTML = '<ul role="list">';
     countries.forEach(country => {
         countriesHTML += `<li class="country-card" data-id="${country.name.common}">`;
-        countriesHTML += `<img src="${country.flags.png}" alt="${country.name.common} flag">`;
+        countriesHTML += `<img loading="lazy" src="${country.flags.png}" alt="${country.name.common} flag">`;
         countriesHTML += `<div class="content">`;
         countriesHTML += `<h3>${country.name.common}</h3>`;
         countriesHTML += `<div><strong>Population:</strong> ${new Intl.NumberFormat('hu-HU').format(country.population)}</div>`;

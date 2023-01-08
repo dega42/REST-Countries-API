@@ -229,6 +229,7 @@ header {
 
 #countries img {
   height: 190px;
+  width: 100%;
   object-fit: cover;
   margin-inline: auto;
 }
