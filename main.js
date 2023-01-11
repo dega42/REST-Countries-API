@@ -17,8 +17,8 @@ let state =
 }
 
 window.onload = () => {
-    renderRegionOptions()
-    getCountries()
+    renderRegionOptions();
+    getCountries();
 }
 
 function renderRegionOptions() {
@@ -27,11 +27,11 @@ function renderRegionOptions() {
             return response.json();
         })
         .then(function (response) {
-            const regions = [...new Set(response.map((e) => e.region).flat(1))]
+            const regions = [...new Set(response.map((e) => e.region).flat(1))];
             var regionOptionsHTML = '<option value="all" selected>All</option>';
             regions.forEach(region => {
                 regionOptionsHTML += `<option value="${region}">${region}</option>`
-            })
+            });
             filterRegion.innerHTML = regionOptionsHTML;
         })
 }
@@ -68,7 +68,7 @@ sortBy.addEventListener('change', function (event) {
 
 function getCountries() {
     if (state.searchTerm.length > 0) {
-        apiUrl = `https://restcountries.com/v3.1/${state.searchIn}/${state.searchTerm}`
+        apiUrl = `https://restcountries.com/v3.1/${state.searchIn}/${state.searchTerm}`;
     }
     else apiUrl = 'https://restcountries.com/v3.1/all';
 
@@ -80,11 +80,11 @@ function getCountries() {
             return response.json();
         })
         .then(function (countries) {
-            renderCountries(countries)
+            renderCountries(countries);
         })
         .catch(function (error) {
             countriesDiv.innerHTML = '';
-            hits.innerHTML = 'Number of hits: ' + error
+            hits.innerHTML = 'Number of hits: ' + error;
         })
 }
 
@@ -105,17 +105,17 @@ function renderCountries(countries) {
             })
             break;
         case 'sortByPopulationAsc':
-            countries.sort((a, b) => b.population - a.population)
+            countries.sort((a, b) => b.population - a.population);
             break;
         case 'sortByPopulationDesc':
-            countries.sort((a, b) => a.population - b.population)
+            countries.sort((a, b) => a.population - b.population);
         default:
             break;
     }
-    if (state.filterRegion != 'all') countries = countries.filter(country => country.region == state.filterRegion)
+    if (state.filterRegion != 'all') countries = countries.filter(country => country.region == state.filterRegion);
     hits.innerHTML = 'Number of hits: ' + countries.length;
     var countriesHTML = '<ul role="list">';
-    countries.forEach(country => {
+    countries.map(country => {
         countriesHTML += `<li class="country-card" data-id="${country.name.common}">`;
         countriesHTML += `<img loading="lazy" src="${country.flags.png}" alt="${country.name.common} flag">`;
         countriesHTML += `<div class="content">`;
@@ -131,7 +131,7 @@ function renderCountries(countries) {
 
     for (var card of document.querySelectorAll('.country-card')) {
         card.onclick = function (e) {
-            const country = e.currentTarget.dataset.id
+            const country = e.currentTarget.dataset.id;
             renderCountry(country);
         }
     }
@@ -139,12 +139,32 @@ function renderCountries(countries) {
 }
 
 function renderCountry(country) {
-    var countryHTML = `<dialog open>
-        ${country}
-        <form method="dialog">
-          <button>Close</button>
-        </form>
-      </dialog>`;
-    countryDiv.innerHTML = countryHTML
-
+    fetch(`https://restcountries.com/v3.1/name/${country}`)
+        .then(function (response) {
+            if (!response.ok) {
+                return Promise.reject('No result');
+            }
+            return response.json();
+        })
+        .then(function (country) {
+            console.log(country);
+            country.forEach(c => {
+                console.log(c.name.common);
+            })
+            country.map(c => {
+                var countryHTML = '<dialog open>';
+                countryHTML += '<form method="dialog">';
+                countryHTML += '<button>Close</button>';
+                countryHTML += '</form>';
+                countryHTML += '<div class="dialog-wrapper">'
+                countryHTML += `Native name: ${c.name.common}`;
+                countryHTML += '</div>'
+                countryHTML += '</dialog>';
+                countryDiv.innerHTML = countryHTML
+            })
+        })
+        .catch(function (error) {
+            countriesDiv.innerHTML = '';
+            hits.innerHTML = 'Number of hits: ' + error
+        })
 }
