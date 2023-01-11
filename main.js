@@ -158,13 +158,25 @@ function renderCountry(country) {
                 countryHTML += '</form>';
                 countryHTML += '<div class="dialog-wrapper">'
                 countryHTML += `Native name: ${c.name.common}`;
-                countryHTML += '</div>'
+                countryHTML += `Population: `;
+                countryHTML += `Region `;
+                countryHTML += `Sub Region `;
+                countryHTML += `Capital`;
+                countryHTML += `Top Level Domain: `;
+                countryHTML += `Currencies: `;
+                countryHTML += `Languages: `;
+                countryHTML += `Border countries: `;
+                countryHTML += `Car signs: `;
+                countryHTML += `Car side: `;
+                countryHTML += `Maps: `;
+                countryHTML += `Timezones: `;
+                countryHTML += '</div>';
                 countryHTML += '</dialog>';
-                countryDiv.innerHTML = countryHTML
+                countryDiv.innerHTML = countryHTML;
             })
         })
         .catch(function (error) {
             countriesDiv.innerHTML = '';
-            hits.innerHTML = 'Number of hits: ' + error
+            hits.innerHTML = 'Number of hits: ' + error;
         })
 }
