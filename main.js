@@ -163,8 +163,12 @@ function renderCountry(country) {
                 countryHTML += `<p>Sub Region: ${c.subregion}</p>`;
                 countryHTML += `<p>Capital: ${c.capital}</p>`;
                 countryHTML += `<p>Top Level Domain: </p>`;
-                countryHTML += `<p>Currencies: ${c.c}</p>`;
-                countryHTML += `<p>Languages: </p>`;
+                countryHTML += `<p>Currencies:`;
+                countryHTML += Object.keys(c.currencies)
+                
+                countryHTML += `</p>`;
+                countryHTML += `<p>Languages:${Object.values(c.languages)}</p>`;
+                
                 countryHTML += `<p>Border countries: </p>`;
                 countryHTML += `<p>Car signs: </p>`;
                 countryHTML += `<p>Car side: </p>`;
